@@ -120,7 +120,7 @@ img {
 <p>Целевая функция — это линейное уравнение, которое должно быть или максимизировано или минимизировано. Оно содержит целевую переменную, выраженную с помощью искомых переменных, то есть Z выраженную через х<sub>1</sub>, х<sub>2</sub>, … в виде линейного уравнения.</p>
 <p>В нашем примере каждый изготовленный продукт А приносит 2500 руб. маржинальной прибыли, а при изготовлении х<sub>1</sub> единиц продукта А, маржинальная прибыль составит 2500х<sub>1</sub>. Аналогично маржинальная прибыль от изготовления х<sub>2</sub> единиц продукта В составит 3500х<sub>2</sub>. Таким образом, суммарная маржинальная прибыль, полученная в следующем месяце за счет производства х<sub>1</sub> единиц продукта А и х<sub>2</sub> единиц продукта В, то есть, целевая переменная Z составит: Z = 2500х<sub>1</sub>+3500х<sub>2</sub>.</p>
 <p>Николай стремится максимизировать этот показатель. Таким образом, целевая функция в нашей модели:</p>
-<p><span class="math">\[Z = 2500 х_1 + 3500 х_2 \to \max \]</span></p>
+<p><math display="block"> <mrow> <mi>Z</mi><mo>=</mo><mn>2500</mn><msub> <mrow> <mtext> x</mtext></mrow> <mn>1</mn> </msub> <mtext> </mtext><mo>+</mo><mn>3500</mn><msub> <mrow> <mtext> x</mtext></mrow> <mn>2</mn> </msub> <mo>→</mo><mi>max</mi></mrow> </math></p>
 </div>
 <div id=".-3.--" class="section level3">
 <h3>Этап. 3. Определение ограничений</h3>
@@ -137,14 +137,9 @@ img {
 <h4>Этап. 4. Запись условий неотрицательности</h4>
 <p>Искомые переменные не могут быть отрицательными числами, что необходимо записать в виде неравенств х<sub>1</sub>≥0 и х<sub>2</sub>≥0. В нашем примере второе условия является избыточным, так как выше было определено, что х<sub>2</sub> не может быть меньше 12.</p>
 <p>Полная модель линейного программирования для производственной задачи Николая может быть записана в виде:</p>
-<p><span class="math">\[Z = 2500 х_1 + 3500 х_2 \to \max \]</span></p>
-<p><span class="math">\[\left\{ {\begin{array}
-{3{x_1} + 10{x_2} \le 330}\\
-{16{x_1} + 4{x_2} \le 400}\\
-{6{x_1} + 6{x_2} \le 240}\\
-{{x_1} \ge 0}\\
-{{x_2} \ge 12}
-\end{array}} \right.\]</span></p>
+<p><math display="block"> <mrow> <mi>Z</mi><mo>=</mo><mn>2500</mn><msub> <mrow> <mtext> x</mtext></mrow> <mn>1</mn> </msub> <mtext> </mtext><mo>+</mo><mn>3500</mn><msub> <mrow> <mtext> x</mtext></mrow> <mn>2</mn> </msub> <mo>→</mo><mi>max</mi></mrow> </math></p>
+<p><math display="block"> <mrow> <mrow><mo>{</mo> <mrow> <mtable> <mtr> <mtd> <mrow> <mn>3</mn><msub> <mi>x</mi> <mn>1</mn> </msub> <mo>+</mo><mn>10</mn><msub> <mi>x</mi> <mn>2</mn> </msub> <mo>≤</mo><mn>330</mn></mrow> </mtd> </mtr> <mtr> <mtd> <mrow> <mn>16</mn><msub> <mi>x</mi> <mn>1</mn> </msub> <mo>+</mo><mn>4</mn><msub> <mi>x</mi> <mn>2</mn> </msub> <mo>≤</mo><mn>400</mn></mrow> </mtd> </mtr> <mtr> <mtd> <mrow> <mn>6</mn><msub> <mi>x</mi> <mn>1</mn> </msub> <mo>+</mo><mn>6</mn><msub> <mi>x</mi> <mn>2</mn> </msub> <mo>≤</mo><mn>240</mn></mrow> </mtd> </mtr> <mtr> <mtd> <mrow> <msub> <mi>x</mi> <mn>1</mn> </msub> <mo>≥</mo><mn>0</mn></mrow> </mtd> </mtr> <mtr> <mtd> <mrow> <msub> <mi>x</mi> <mn>2</mn> </msub> <mo>≥</mo><mn>12</mn></mrow> </mtd> </mtr></p>
+<p></mtable></mrow> </mrow></mrow> </math></p>
 </div>
 </div>
 <div id="--r" class="section level3">
