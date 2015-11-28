@@ -3,9 +3,9 @@ title: "Решение задачи линейного программиров�
 author: "Тушавин В. А."
 date: "20 ноября 2015 г."
 output:
-  word_document: default
   html_document:
     keep_md: yes
+  word_document: default
 ---
 
 ### Постановка задачи
