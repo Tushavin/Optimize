@@ -1,0 +1,111 @@
+---
+title: "Задачник по матричным играм"
+author: "Тушавин В.А."
+date: "2 декабря 2015 г."
+output: word_document
+---
+ 
+### Задачи
+ 
+Методика оценки. Каждый решает 4 задачи симплексным методом. Баллов за каждую задачу 25.
+ 
+В том числе:
+
+* 5 баллов правильные верхние и нижние границы
+* 5 баллов за упрощение матрицы
+* 5 баллов - цена игры
+* 10 баллов за правильные стратегии
+ 
+```{r echo=F,results='asis'}
+solve.mt<-function(mtx) {
+  if(!is.matrix(mtx)) stop("В качестве параметра должна быть матрица")
+  rownames(mtx)<-paste0("A",1:nrow(mtx))
+  colnames(mtx)<-paste0("B",1:ncol(mtx))
+  a.vec<-apply(mtx,1,min)
+  b.vec<-apply(mtx,2,max)
+  a<-max(a.vec)
+  b<-min(b.vec)
+  cat("Дана матрица:\n")
+  print(mtx)
+  cat("Нижняя цена игры:",a,"\n")
+  cat("Верхняя цена игры:",b,"\n")
+    if(a==b) {
+    cat("Матрица имеет седловую точку:",a,"\n")
+    cat("Оптимальная стратегия: A",which.max(a.vec), " и B",which.min(b.vec),"\n",sep="")
+    } else {
+      cat("Т.к. нижняя цена не равна верхней цене, то седловой точки нет,\nт.е. решение матричной игры нужно искать в смешанных стратегиях.\n") 
+      cat("Исследуем матрицу с точки зрения доминирования\n")
+      a.idx=c()
+      for(i in 1:(nrow(mtx)-1)) for(j in (i+1):nrow(mtx)) {
+        if(all(mtx[i,]<=mtx[j,])) {
+          a.idx<-c(a.idx,i)
+          cat("Стратегия A",i," доминируется стратегией A",j,"\n",sep="")
+        } 
+        if(all(mtx[i,]>mtx[j,])) {
+          a.idx<-c(a.idx,j)
+          cat("Стратегия A",j," доминируется стратегией A",i,"\n",sep="")
+        }
+      }
+      if(length(a.idx)>0) print(mtx<-mtx[-a.idx,])
+      b.idx=c()
+      for(i in 1:(ncol(mtx)-1)) for(j in (i+1):ncol(mtx)) {
+        if(all(mtx[,i]<=mtx[,j])) {
+          b.idx<-c(b.idx,j)
+          cat("Стратегия B",j," доминируется стратегией B",i,"\n",sep="")
+        } 
+        if(all(mtx[,i]>mtx[,j])) {
+          b.idx<-c(b.idx,i)
+          cat("Стратегия B",i," доминируется стратегией B",j,"\n",sep="")
+        }
+      }
+      if(length(b.idx)>0) print(mtx<-mtx[,-b.idx])
+      if(length(a.idx)==0 & length(b.idx)==0) cat("Доминирующих стратегий не выявлено\n")
+    z<-min(mtx)
+    if(z<0) {
+      cat("Поскольку минимальное значение матрицы ",z,"<0, то необходимо добавить константу\n")
+      mtx<-mtx-z
+      cat("Матрица после пересчета:\n")
+      print(mtx)
+    } else z<-0
+    library(lpSolve)
+    cat("\n**** Оптимальная стратегия для игрока A\n\n")
+    result<-lp("min",rep(1,nrow(mtx)), t(mtx), rep(">=",ncol(mtx)),rep(1,ncol(mtx)))
+    cat("Решение задачи ЛП дает минимальное значение целевой функции",result$objval,
+        "\nпри значениях переменных:",result$solution,"\n")
+    cat("Отсюда цена игры:",1/result$objval+z," и смешанные стратегии для A (",rownames(mtx),"), соответственно:\n", result$solution/result$objval,"\n")
+    cat("\n**** Оптимальная стратегия для игрока B\n\n")
+    result<-lp("max",rep(1,ncol(mtx)), mtx, rep("<=",nrow(mtx)),rep(1,nrow(mtx)))
+    cat("Решение задачи ЛП дает максимальное значение целевой функции",result$objval,
+        "\nпри значениях переменных:",result$solution,"\n")
+    cat("Отсюда цена игры:",1/result$objval+z," и смешанные стратегии для B(",colnames(mtx),"), соответственно:\n",result$solution/result$objval,"\n")
+   
+  }
+}
+z<-paste("Вариант ",1:25)
+set.seed(2015)
+tst<-list()
+library(knitr)
+lst=0
+for(i in 1:length(z)) {
+cat("\n### ",z[i],"\n")
+  for(j in 1:4) {
+  mtx<-matrix(sample(1:100,24,replace = T),ncol=sample(c(3,4,6,8),1)) 
+  rownames(mtx)<-paste0("A",1:nrow(mtx))
+  colnames(mtx)<-paste0("B",1:ncol(mtx))
+  lst=lst+1
+  cat("\n#### Задача №",j,"(",lst,")\n\nНайти решение игры, заданной матрицей\n\n")
+  print(kable(mtx))
+  tst[[lst]]<-mtx
+} }
+ 
+```
+ 
+### Решение
+ 
+ 
+```{r echo=F}
+for(i in 1:(length(z)*4)) {
+  cat("\n************ Задача №",i,"\n\n")
+  solve.mt(tst[[i]])
+}
+```
