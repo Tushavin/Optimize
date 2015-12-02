@@ -5,6 +5,7 @@ date: "30 ноября 2015 г."
 output:
   html_document:
     keep_md: yes
+  pdf_document: default
   word_document: default
 ---
 
@@ -250,7 +251,7 @@ summary(test)
 
 ### Решение в LibreOffice
 
-Пример решения приведен в файле [matrix.ods](matrix.ods).
+Пример решения приведен в файле [matrix.ods](Samples/LibreOffice/matrix.ods).
 
 Решение сводится к решениям прямой и обратной задач линейного программирования с помощью встроенной системы Решатель.
 
