@@ -188,7 +188,7 @@ sessionInfo()
 ```
 
 ```
-## R version 3.2.0 (2015-04-16)
+## R version 3.2.2 (2015-08-14)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## Running under: Windows 7 x64 (build 7601) Service Pack 1
 ## 
@@ -201,11 +201,11 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] knitr_1.10.5
+## [1] knitr_1.11
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] magrittr_1.5    formatR_1.2.1   tools_3.2.0     htmltools_0.2.6
-##  [5] yaml_2.1.13     stringi_0.4-1   rmarkdown_0.6.1 highr_0.5      
+##  [1] magrittr_1.5    formatR_1.2.1   tools_3.2.2     htmltools_0.2.6
+##  [5] yaml_2.1.13     stringi_1.0-1   rmarkdown_0.8.1 highr_0.5.1    
 ##  [9] stringr_1.0.0   digest_0.6.8    evaluate_0.8
 ```
 
