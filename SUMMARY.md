@@ -1,5 +1,5 @@
 # Summary
 
 * [Introduction](README.md)
-* Матричные игры
+* [Матричные игры](game1.md)
 
